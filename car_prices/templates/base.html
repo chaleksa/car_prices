@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:mso="urn:schemas-microsoft-com:office:office"
+  xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!--Custom css and js-->
+    <script src={% static 'main.js' %} defer></script>
+    <script src={% static 'semantic.js' %} defer></script>
+    <link rel='stylesheet' type='text/css' href={% static 'style.css' %}>
+    <!-- semantic UI -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+
+    <title>{% block title %}{% endblock title %}</title>
+  </head>
+  {% include 'navbar.html' %}
+  <body style="background: url('{% static 'header.png' %}') no-repeat top center; background-color: rgba(60, 66, 69)">
+    {% block content %}{% endblock content %}
+  </body>
+</html>
+
+
+  {% comment %} style="background: url('{% static 'header.png' %}');overflow: hidden;width: 100%;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: top center;
+   " {% endcomment %}

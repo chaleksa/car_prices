@@ -1,0 +1,76 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
+body {
+  text-align: center;
+}
+
+.not-visible {
+  display: none;
+}
+
+form {
+  background-color: rgba(187, 184, 184, 0.527);
+  box-shadow: inset 0px 0px 40px 40px #969595a1;
+  border-radius: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+img {
+  border-radius: 5px;
+}
+
+#graph-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  width: 100%;
+}
+
+#graph-data {
+  background-color: rgba(176, 175, 175, 0.74);
+  border-radius: 2px;
+  padding: 10px;
+}
+
+#card-style {
+  background-color: rgba(231, 229, 229, 0.61);
+}
+
+#btn-box {
+  margin-bottom: 15px;
+}
+
+.block-center {
+  text-align: center !important;
+}
+
+.card-container {
+  max-width: 150px;
+}
+
+.mt-5 {
+  margin-top: 5px;
+}
+
+.home-page {
+  display: inline-block;
+  margin: 12% auto;
+}
+
+.home-page h1 {
+  font-family: "Lato", sans-serif;
+  font-weight: normal;
+  font-size: 60px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.home-page .vertical-line {
+  height: 2px;
+  background-color: #fff;
+  width: 150px;
+  margin: 0 auto;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}

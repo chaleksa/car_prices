@@ -1,0 +1,139 @@
+{% extends 'base.html' %} {% block content %}
+<div id="alert-box"></div>
+<div class="ui grid">
+  <div class="four wide column">
+    <div class="ui fourteen column centered grid">
+      <form action="" method="POST" class="ui inverted form" id="car-form">
+        {% csrf_token %}
+        <h4 class="ui inverted dividing header">Car</h4>
+        <div class="field">
+          <div class="ui search selection dropdown" id="cars">
+            <input type="hidden" name="marka_id" />
+            <i class="dropdown icon"></i>
+            <div class="default text">Make</div>
+            <div class="menu" id="cars-data-box"></div>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui search selection dropdown" id="models">
+            <input type="hidden" name="model_id" />
+            <i class="dropdown icon"></i>
+            <div class="default text" id="model-text">Model</div>
+            <div class="menu" id="models-data-box"></div>
+          </div>
+        </div>
+
+        <h4 class="ui inverted dividing header mt-5">Production year(s)</h4>
+        <div class="field">
+          <div class="ui compact selection dropdown">
+            <input type="hidden" name="year_from" />
+            <i class="dropdown icon"></i>
+            <div class="default text">Year from</div>
+            <div class="menu">
+              {% for y in years %}
+              <div class="item" value="{{y}}">{{y}}</div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui compact selection dropdown">
+            <input type="hidden" name="year_to" />
+            <i class="dropdown icon"></i>
+            <div class="default text">Year to</div>
+            <div class="menu">
+              {% for y in years %}
+              <div class="item" value="{{y}}">{{y}}</div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <h4 class="ui inverted dividing header mt-5">Other options</h4>
+        <div class="field">
+          <div class="ui selection dropdown">
+            <input type="hidden" name="gear_id" />
+            <i class="dropdown icon"></i>
+            <div class="default text">Transmission</div>
+            <div class="menu">
+              {% for t in transmission %}
+              <div class="item" data-value="{{t.value}}">{{t.name}}</div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui selection dropdown">
+            <input type="hidden" name="mileage_from" />
+            <i class="dropdown icon"></i>
+            <div class="default text">Mileage from, km</div>
+            <div class="menu">
+              {% for m in mileage %}
+              <div class="item" data-value="{{m}}">{{m}}</div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui selection dropdown">
+            <input type="hidden" name="mileage_to" />
+            <i class="dropdown icon"></i>
+            <div class="default text">Mileage to, km</div>
+            <div class="menu">
+              {% for m in mileage %}
+              <div class="item" data-value="{{m}}">{{m}}</div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div id="btn-box" class="not-visible">
+          <button type="submit" class="ui primary button">
+            Get statistics
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="ten wide column">
+    <div class="ui grid">
+      <div class="row">
+        {% if car_stat.total == 1 %}
+        <div class="ui big teal info message">
+          <div class="header">We found only one offer for this car</div>
+          <ul class="list">
+            <li>Price: {{ max_price }} $</li>
+          </ul>
+        </div>
+        {% elif car_stat.total > 1 %}
+        <div id="graph-container">
+          <div id="graph-data">
+            <h5>Mean price</h5>
+            {{mean_price}} $
+          </div>
+          <div id="graph-data">
+            <h5>Number of offers</h5>
+            {{car_stat.total}}
+          </div>
+          <div id="graph-data">
+            <h5>Min price</h5>
+            {{min_price}} $
+          </div>
+          <div id="graph-data">
+            <h5>Max price</h5>
+            {{max_price}} $
+          </div>
+        </div>
+        {% if graph %}
+        <div id="image-view">
+          <img src="data:image/png;base64, {{graph | safe}}" />
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %} {% if error_message %}
+    <div class="ui big orange negative message">
+      <div class="header block-center">{{error_message}}</div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}

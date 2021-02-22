@@ -1,0 +1,46 @@
+{% url 'home' as path_to_home %}
+{% url 'price_stat:main-view' as path_to_prices %}
+{% comment %} 
+{% url 'logout' as path_to_logout %}
+{% url 'products:main-products-view' as path_to_performance %}
+{% url 'products:add-purchase-view' as path_to_adding_records %}
+{% url 'csvs:upload-view' as path_to_upload %}
+{% url 'customers:main-customers-view' as path_to_customers %}
+{% url 'products:sales_dist_view' as path_to_sales %} {% endcomment %}
+
+
+
+
+<div class="ui inverted secondary pointing menu">
+  <a href={{path_to_home}} class="{% if request.path == path_to_home %} active {% endif %} item">
+    Home
+  </a>
+  <a href={{path_to_prices}} id="prices" class="{% if request.path == path_to_prices %} active {% endif %} item">
+    Prices
+  </a>
+   {% comment %} {% if request.user.is_authenticated %}
+  <a href={{path_to_sales}} class="{% if request.path == path_to_sales %} active {% endif %} item">
+    Sales
+  </a>
+  <a href={{path_to_adding_records}} class="{% if request.path == path_to_adding_records %} active {% endif %} item">
+    Add record
+  </a>
+   <a href={{path_to_customers}} class="{% if request.path == path_to_customers %} active {% endif %} item">
+    Customers
+  </a>
+    <a href={{path_to_upload}} class="{% if request.path == path_to_upload %} active {% endif %} item">
+    Upload file
+  </a>
+  <div class="right menu">
+    <a href={{path_to_logout}} class="{% if request.path == path_to_logout %} active {% endif %} ui item">
+      Logout
+    </a>
+  </div>
+  {% else %}
+  <div class="right menu">
+    <a href={{path_to_login}} class="{% if request.path == path_to_login %} active {% endif %} ui item">
+      Login
+    </a>
+  </div>
+  {% endif %} {% endcomment %}
+</div>
